@@ -1,3 +1,67 @@
-[gd_scene format=3 uid="uid://ct126avoa8833"]
+[gd_scene load_steps=6 format=3 uid="uid://ct126avoa8833"]
+
+[ext_resource type="PackedScene" uid="uid://df6k16ioj1dfg" path="res://Models/Vehicles/Mains/sedan.fbx" id="1_iti4p"]
+[ext_resource type="PackedScene" uid="uid://dogn5asynhqm" path="res://Models/Wheels/default-r-wheel.fbx" id="2_dtjkg"]
+[ext_resource type="PackedScene" uid="uid://rvyo2a45808a" path="res://Models/Wheels/default-l-wheel.fbx" id="3_eglq2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lpde8"]
+size = Vector3(1.3, 0.8, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iti4p"]
+size = Vector3(6, 0.1, 6)
 
 [node name="TestLevel" type="Node3D"]
+
+[node name="DefaultCar" type="VehicleBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="BodyModel" parent="DefaultCar" instance=ExtResource("1_iti4p")]
+
+[node name="Shape" type="CollisionShape3D" parent="DefaultCar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_lpde8")
+
+[node name="FLW" type="VehicleWheel3D" parent="DefaultCar"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.65, 0, -0.666)
+use_as_traction = true
+use_as_steering = true
+wheel_radius = 0.25
+wheel_rest_length = 0.25
+
+[node name="FLWModel" parent="DefaultCar/FLW" instance=ExtResource("2_dtjkg")]
+transform = Transform3D(-1, -9.31619e-05, 0.000269069, -9.32377e-05, 1, -0.000230662, -0.000269043, -0.000230693, -1, 0, 0, 0)
+
+[node name="FRW" type="VehicleWheel3D" parent="DefaultCar"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.65, 0, -0.666)
+use_as_traction = true
+use_as_steering = true
+wheel_radius = 0.25
+wheel_rest_length = 0.25
+
+[node name="FRWModel" parent="DefaultCar/FRW" instance=ExtResource("3_eglq2")]
+transform = Transform3D(-1, 1.74846e-07, -8.74228e-08, 1.74846e-07, 1, 7.64274e-15, 8.74228e-08, -7.64274e-15, -1, 0, 0, 0)
+
+[node name="RLW" type="VehicleWheel3D" parent="DefaultCar"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0.65, 0, 0.666)
+use_as_traction = true
+use_as_steering = true
+wheel_radius = 0.25
+wheel_rest_length = 0.25
+
+[node name="RLWModel" parent="DefaultCar/RLW" instance=ExtResource("2_dtjkg")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="RRW" type="VehicleWheel3D" parent="DefaultCar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0, 0.666)
+use_as_traction = true
+use_as_steering = true
+wheel_radius = 0.25
+wheel_rest_length = 0.25
+
+[node name="RRWModel" parent="DefaultCar/RRW" instance=ExtResource("3_eglq2")]
+transform = Transform3D(-1, 1.74846e-07, 8.74228e-08, 1.74846e-07, 1, -7.64274e-15, -8.74228e-08, 7.64274e-15, -1, 0, 0, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="Shape" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_iti4p")
