@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dk4fy3hkcj1bg"
-path="res://.godot/imported/cargo.fbx-848acb3780496da95e8bd814efa03fb6.scn"
+path="res://.godot/imported/light.fbx-471565c45efbe031db872daf165029c1.scn"
 
 [deps]
 
-source_file="res://Models/Vehicles/Mains/cargo.fbx"
-dest_files=["res://.godot/imported/cargo.fbx-848acb3780496da95e8bd814efa03fb6.scn"]
+source_file="res://Models/Vehicles/Mains/light.fbx"
+dest_files=["res://.godot/imported/light.fbx-471565c45efbe031db872daf165029c1.scn"]
 
 [params]
 
