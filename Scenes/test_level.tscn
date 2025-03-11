@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct126avoa8833"]
+[gd_scene load_steps=7 format=3 uid="uid://ct126avoa8833"]
 
 [ext_resource type="PackedScene" uid="uid://druebcxf1qo76" path="res://Models/Vehicles/Mains/sedan-vehicle.glb" id="1_eglq2"]
+[ext_resource type="Script" uid="uid://cddnheolmw73d" path="res://Scripts/CarController.gd" id="1_rsyfn"]
 [ext_resource type="PackedScene" uid="uid://caokqeytd2o53" path="res://Models/Wheels/default-l-wheel.glb" id="2_rsyfn"]
 [ext_resource type="PackedScene" uid="uid://b3sitc0igndat" path="res://Models/Wheels/default-r-wheel.glb" id="3_7w7ni"]
 
@@ -8,7 +9,7 @@
 size = Vector3(1.3, 0.8, 2.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iti4p"]
-size = Vector3(6, 0.1, 6)
+size = Vector3(16, 0.1, 16)
 
 [node name="TestLevel" type="Node3D"]
 
@@ -17,6 +18,9 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 
 [node name="DefaultCar" type="VehicleBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mass = 120.0
+script = ExtResource("1_rsyfn")
+speed = 240.0
 
 [node name="BodyModel" parent="DefaultCar" instance=ExtResource("1_eglq2")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -2.98023e-08, 0)
@@ -29,11 +33,13 @@ shape = SubResource("BoxShape3D_lpde8")
 transform = Transform3D(0.999999, 0.000790534, -0.000765489, -0.000789663, 0.999999, 0.00112136, 0.000766388, -0.00112074, 0.999999, -0.64949, 0.0997665, -0.666497)
 use_as_traction = true
 use_as_steering = true
+wheel_roll_influence = 0.25
 wheel_radius = 0.25
 wheel_rest_length = 0.25
-suspension_travel = 0.8
-suspension_stiffness = 16.0
-damping_compression = 1.0
+wheel_friction_slip = 1.0
+suspension_stiffness = 64.0
+damping_compression = 2.0
+damping_relaxation = 4.0
 
 [node name="FLWModel" parent="DefaultCar/FLW" instance=ExtResource("2_rsyfn")]
 transform = Transform3D(-1, 4.3201e-12, -8.73697e-08, 3.52429e-11, 1, 0, 8.74861e-08, 0, -1, 0.1, 7.90358e-05, -7.65324e-05)
@@ -42,11 +48,13 @@ transform = Transform3D(-1, 4.3201e-12, -8.73697e-08, 3.52429e-11, 1, 0, 8.74861
 transform = Transform3D(0.999999, 0.000790296, -0.000765137, -0.000789425, 0.999999, 0.00112135, 0.000766036, -0.00112074, 0.999999, 0.650509, 0.0987399, -0.665501)
 use_as_traction = true
 use_as_steering = true
+wheel_roll_influence = 0.25
 wheel_radius = 0.25
 wheel_rest_length = 0.25
-suspension_travel = 0.8
-suspension_stiffness = 16.0
-damping_compression = 1.0
+wheel_friction_slip = 1.0
+suspension_stiffness = 64.0
+damping_compression = 2.0
+damping_relaxation = 4.0
 
 [node name="FRWModel" parent="DefaultCar/FRW" instance=ExtResource("3_7w7ni")]
 transform = Transform3D(-1, 4.76829e-07, 8.74279e-08, 4.76849e-07, 1, 0, -8.74279e-08, 0, -1, -0.1, -7.90358e-05, 7.65324e-05)
@@ -55,11 +63,13 @@ transform = Transform3D(-1, 4.76829e-07, 8.74279e-08, 4.76849e-07, 1, 0, -8.7427
 transform = Transform3D(0.999999, 0.000790534, -0.000765314, -0.000789663, 0.999999, 0.00112135, 0.000766213, -0.00112074, 0.999999, 0.549491, 0.10126, 0.665501)
 use_as_traction = true
 use_as_steering = true
+wheel_roll_influence = 0.25
 wheel_radius = 0.25
 wheel_rest_length = 0.25
-suspension_travel = 0.8
-suspension_stiffness = 16.0
-damping_compression = 1.0
+wheel_friction_slip = 1.0
+suspension_stiffness = 64.0
+damping_compression = 2.0
+damping_relaxation = 4.0
 
 [node name="RRWModel" parent="DefaultCar/RRW" instance=ExtResource("3_7w7ni")]
 transform = Transform3D(-0.999999, -0.00157933, -1.68354e-06, -0.00157933, 0.999997, 0.00224271, -1.85834e-06, 0.00224271, -0.999998, 0, 0, 0)
@@ -68,11 +78,13 @@ transform = Transform3D(-0.999999, -0.00157933, -1.68354e-06, -0.00157933, 0.999
 transform = Transform3D(0.999999, 0.000790534, -0.000765489, -0.000789663, 0.999999, 0.00112136, 0.000766388, -0.00112074, 0.999999, -0.65051, 0.100234, 0.666497)
 use_as_traction = true
 use_as_steering = true
+wheel_roll_influence = 0.25
 wheel_radius = 0.25
 wheel_rest_length = 0.25
-suspension_travel = 0.8
-suspension_stiffness = 16.0
-damping_compression = 1.0
+wheel_friction_slip = 1.0
+suspension_stiffness = 64.0
+damping_compression = 2.0
+damping_relaxation = 4.0
 
 [node name="RLWModel" parent="DefaultCar/RLW" instance=ExtResource("2_rsyfn")]
 transform = Transform3D(-0.999999, -0.00157933, -1.68348e-06, -0.00157933, 0.999997, 0.00224271, -1.85828e-06, 0.00224271, -0.999998, 0.1, 7.90954e-05, -7.6592e-05)
